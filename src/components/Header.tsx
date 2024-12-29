@@ -18,10 +18,14 @@ export default function Header() {
               type="text"
               placeholder="Enter domain name"
               className="flex-grow min-w-0"
-              onChange={(e) => setLink(e.target.value)}
-              onClick={() => console.log("baadme")}
+              value={link}
+              onChange={(e) => setLink(e.currentTarget.value)}
             />
-            <Button type="submit" className="whitespace-nowrap">
+            <Button
+              type="submit"
+              onClick={() => console.log(link)}
+              className="whitespace-nowrap"
+            >
               Search
             </Button>
           </div>
