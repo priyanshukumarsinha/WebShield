@@ -1,25 +1,42 @@
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import Navbar from "./components/navbar"
+'use client'
 
-export default function Home() {
+import { useEffect, useState } from 'react'
+import { LoadingScreen } from '@/components/loading-screen'
+import { DashboardSkeleton } from '@/components/dashboard-skeleton'
+
+export default function Page() {
+  const [isLoading, setIsLoading] = useState(true)
+  const [isDataReady, setIsDataReady] = useState(false)
+
+  useEffect(() => {
+    // Simulate initial loading
+    const loadingTimer = setTimeout(() => {
+      setIsLoading(false)
+    }, 3000)
+
+    // Simulate data fetching
+    const dataTimer = setTimeout(() => {
+      setIsDataReady(true)
+    }, 5000)
+
+    return () => {
+      clearTimeout(loadingTimer)
+      clearTimeout(dataTimer)
+    }
+  }, [])
+
+  if (isLoading) {
+    return <LoadingScreen />
+  }
+
+  if (!isDataReady) {
+    return <DashboardSkeleton />
+  }
+
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <Navbar />
-      <main className="flex-grow flex flex-col items-center justify-center p-4 space-y-6">
-        <h1 className="text-4xl md:text-6xl font-bold text-center text-primary">
-          WebShield
-        </h1>
-        <div className="w-full max-w-md space-y-4">
-          <div className="flex space-x-2">
-            <Input type="text" placeholder="Enter domain name" className="flex-grow min-w-0" />
-            <Button type="submit" className="whitespace-nowrap">Search</Button>
-          </div>
-          <p className="text-sm md:text-base text-center text-muted-foreground">
-            Tracing the real source of Suspicious Websites
-          </p>
-        </div>
-      </main>
+    <div className="container mx-auto p-6">
+      {/* Your actual dashboard content will go here */}
+      <h1>Dashboard Content</h1>
     </div>
   )
 }

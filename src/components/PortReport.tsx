@@ -18,12 +18,6 @@ export function PortReport({ data }: PortReportProps) {
     <Card>
       <CardHeader>
         <CardTitle>Port Report</CardTitle>
-        <div className="flex gap-4 pt-2">
-          <StatusIndicator status="Harmless" />
-          <StatusIndicator status="Suspicious" />
-          <StatusIndicator status="Malicious" />
-          <StatusIndicator status="Undetected" />
-        </div>
       </CardHeader>
       <CardContent>
         <Table>
@@ -31,7 +25,6 @@ export function PortReport({ data }: PortReportProps) {
             <TableRow>
               <TableHead>Port</TableHead>
               <TableHead>Service</TableHead>
-              <TableHead>Status</TableHead>
               <TableHead>Risk Level</TableHead>
             </TableRow>
           </TableHeader>
@@ -40,9 +33,6 @@ export function PortReport({ data }: PortReportProps) {
               <TableRow key={index}>
                 <TableCell className="font-medium">{item.port}</TableCell>
                 <TableCell>{item.service}</TableCell>
-                <TableCell>
-                  <StatusIndicator status={item.status} showLabel={false} />
-                </TableCell>
                 <TableCell>{item.riskLevel}</TableCell>
               </TableRow>
             ))}
