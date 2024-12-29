@@ -1,13 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Input } from "@/components/ui/input";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardTitle, CardHeader } from "@/components/ui/card";
 import { UrlReport } from "./UrlReport";
 import { DomainReport } from "./DomainReport";
 import { IpReport } from "./IpReport";
@@ -95,21 +88,25 @@ const fakeData = {
     {
       port: 80,
       service: "HTTP",
+      status: "Active",
       riskLevel: "Low Risk",
     },
     {
       port: 443,
       service: "HTTPS",
+      status: "Active",
       riskLevel: "Secure",
     },
     {
       port: 21,
       service: "FTP",
+      status: "Inactive",
       riskLevel: "Safe",
     },
     {
       port: 22,
       service: "SSH",
+      status: "Active",
       riskLevel: "Risky",
     },
   ],
@@ -137,7 +134,6 @@ const fakeData = {
 
 export function SecurityDashboard() {
   const [searchTerm, setSearchTerm] = useState("");
-
   const filteredData = {
     ...fakeData,
     securityAnalysis: fakeData.securityAnalysis.filter((item) =>

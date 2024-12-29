@@ -1,7 +1,14 @@
-import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-export function ThreatDistributionChart({ data }) {
+interface ThreatData {
+  status: string;
+}
+
+interface ThreatDistributionChartProps {
+  data: ThreatData[];
+}
+
+export function ThreatDistributionChart({ data }: ThreatDistributionChartProps) {
   const chartData = [
     { name: 'Clean', value: data.filter(item => item.status === 'Clean').length },
     { name: 'Caution', value: data.filter(item => item.status === 'Caution').length },
