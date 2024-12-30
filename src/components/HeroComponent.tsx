@@ -4,12 +4,12 @@
 
 import { SecurityDashboard } from "./SecurityDashboard";
 
-const HeroComponent = () => {
+const HeroComponent = (link: any) => {
   return (
     <div className="container mx-auto p-6">
       {/* Your actual dashboard content will go here */}
       {/* <h1>Dashboard Content</h1> */}
-      <SecurityDashboard />
+      <SecurityDashboard link={link} />
     </div>
   );
 };

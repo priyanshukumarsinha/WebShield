@@ -1,7 +1,7 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/navbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import HeroComponent from "./HeroComponent";
 import { LoadingScreen } from "./loading-screen";
 
@@ -9,6 +9,13 @@ export default function Header() {
   const [link, setLink] = useState("");
   const [showResults, setShowResults] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  // Test API Integration by fetching / returning Hello World
+  useEffect(() => {
+    fetch("http://localhost:3000/")
+      .then((res) => res.text())
+      .then((data) => console.log(data));
+  }, []);
 
   const scrollMaadi = () => {
     // Start loading
@@ -52,7 +59,7 @@ export default function Header() {
         </main>
       </div>
       {isLoading && <LoadingScreen />}
-      {showResults && <HeroComponent/> }
+      {showResults && <HeroComponent link={link}/>}
     </>
   );
 }

@@ -27,10 +27,6 @@ const mockResults = [
   },
 ];
 
-interface SecurityAnalysisProps {
-  data: { engine: string; category: string; result: string; status: string }[];
-}
-
-export function SecurityAnalysis(data: SecurityAnalysisProps) {
-  return <ScanResultsTable results={mockResults} title="Security Analysis" />;
+export function SecurityAnalysis(data: { data: any }) {
+  return <ScanResultsTable results={data.data} title="Security Analysis" />;
 }

@@ -1,19 +1,26 @@
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { StatusIndicator, StatusType } from "./StatusIndicator"
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { StatusIndicator, StatusType } from "./StatusIndicator";
 
 interface ScanResult {
-  engineName: string
-  method: string
-  category: string
-  result: StatusType
-  confidence: number
-  lastUpdate: string
+  engine_name: string;
+  method: string;
+  category: string;
+  result: string;
+  confidence: number;
+  lastUpdate: string;
 }
 
 interface ScanResultsTableProps {
-  results: ScanResult[]
-  title: string
+  results: ScanResult[];
+  title: string;
 }
 
 export function ScanResultsTable({ results, title }: ScanResultsTableProps) {
@@ -43,20 +50,29 @@ export function ScanResultsTable({ results, title }: ScanResultsTableProps) {
           <TableBody>
             {results.map((result, index) => (
               <TableRow key={index}>
-                <TableCell className="font-medium">{result.engineName}</TableCell>
+                <TableCell className="font-medium">
+                  {result.engine_name}
+                </TableCell>
                 <TableCell>{result.method}</TableCell>
                 <TableCell>{result.category}</TableCell>
-                <TableCell>
+                <TableCell>{result.result}</TableCell>
+                {/* <TableCell>
                   <StatusIndicator status={result.result} showLabel={false} />
+                </TableCell> */}
+                <TableCell>
+                  {result.result == "clean"
+                    ? 100
+                    : result.result == "unrated"
+                    ? 50
+                    : 0}
+                  %
                 </TableCell>
-                <TableCell>{result.confidence}%</TableCell>
-                <TableCell>{result.lastUpdate}</TableCell>
+                <TableCell>{new Date().toUTCString()}</TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </CardContent>
     </Card>
-  )
+  );
 }
-
